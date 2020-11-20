@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<canvas id="game" width="400" height="400"></canvas>
+
+<script>
+    const $ = (s) => document.querySelector(s)
+    const $$ = (s) => document.querySelectorAll(s)
+
+    class Grid {
+        constructor(w,h) {
+            this.w = w
+            this.h = h
+            this.data = new Array(10)
+            for(let i=0; i<this.data.length; i++) {
+                this.data[i] = new Array(10)
+                for(let j=0; j<this.data[i].length; j++) {
+                    this.data[i][j] = {
+                        hidden:true,
+                        mine:(Math.random()>0.9),
+                        number:-1,
+                    }
+                }
+            }
+        }
+        get(x,y) {
+            return this.data[x][y]
+        }
+    }
+    let data = new Grid(10,10)
+
+    const SCALE = 30
+    function drawBoard(data, canvas) {
+        let c = canvas.getContext('2d')
+        c.fillStyle = 'white'
+        c.fillRect(0,0,data.w*SCALE,data.h*SCALE)
+        for(let i=0; i<data.w; i++) {
+            for(let j=0; j<data.h; j++) {
+                let cell = data.get(i,j)
+                if(cell.hidden) {
+                    c.fillStyle = 'black'
+                    c.fillRect(i * SCALE, j * SCALE, SCALE - 2, SCALE - 2)
+                } else {
+                    c.fillStyle = 'red'
+                    c.fillRect(i * SCALE, j * SCALE, SCALE - 2, SCALE - 2)
+                }
+            }
+        }
+    }
+
+    drawBoard(data,$("#game"))
+</script>
+
+</body>
+</html>
