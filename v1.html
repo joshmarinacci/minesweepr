@@ -24,13 +24,15 @@
             right:0;
             bottom:0;
             /*padding: 7em;*/
-            border: 1px solid red;
-            background-color: rgba(255,255,255,0.8);
+            border: 0px solid red;
             box-sizing: border-box;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            margin:0;
+            padding:0;
+            background-color: rgba(255,255,255,0.5);
         }
         #lost p {
 
@@ -45,6 +47,20 @@
         button.selected {
             background-color: aqua;
         }
+
+        p {
+            font-family: sans-serif;
+            border: 2vh solid #167716;
+            font-size: 20vh;
+            padding: 10vh;
+            border-radius: 5vh;
+            background-color: rgba(174, 26, 26, 0.8);
+            color: white;
+        }
+
+        canvas {
+            height: 70vh;
+        }
     </style>
 </head>
 <body>
@@ -57,7 +73,7 @@
         <button id="mark" class="selected">mark</button>
         <button id="mine">reveal</button>
     </div>
-    <canvas id="game" width="400" height="400"></canvas>
+    <canvas id="game" width="800" height="800"></canvas>
 
 
 <script>
@@ -163,7 +179,7 @@
     let data = new Grid(10,10)
     let control_state = "mark"
 
-    const SCALE = 30
+    const SCALE = 100
 
     function count_adjacent_bombs(data, i, j) {
         let count = 0
@@ -173,6 +189,18 @@
             }
         }
         return count
+    }
+
+    function draw_text(c, str, i, j) {
+        let s = SCALE*0.9
+        c.save()
+        c.translate(i*SCALE+SCALE/2,j*SCALE+SCALE/2*1.2)
+        c.font = `${s}px sans-serif`
+        c.textAlign = 'center'
+        c.textBaseline = 'middle'
+        c.textBaseline = 'middle'
+        c.fillText(str,0,0);//"😜",0,0)
+        c.restore()
     }
 
     function drawBoard(data, canvas) {
@@ -187,29 +215,32 @@
         for(let i=0; i<data.w; i++) {
             for(let j=0; j<data.h; j++) {
                 let cell = data.get(i,j)
-                c.fillStyle = 'white'
+                c.fillStyle = '#ccc'
                 c.fillRect(i * SCALE, j * SCALE, SCALE - 2, SCALE - 2)
                 if(cell.marked) {
                     c.fillStyle = 'green'
                     c.fillRect(i * SCALE, j * SCALE, SCALE - 2, SCALE - 2)
+                    c.fillStyle = 'black'
+                    draw_text(c,"🌼",i,j)
                     continue;
                 }
                 if(cell.hidden) {
                     c.fillStyle = 'cyan'
                     c.fillRect(i * SCALE, j * SCALE, SCALE - 2, SCALE - 2)
                     c.strokeStyle = 'black'
-                    c.strokeRect(i * SCALE, j * SCALE, SCALE - 2, SCALE - 2)
+                    // c.strokeRect(i * SCALE, j * SCALE, SCALE - 2, SCALE - 2)
                     continue;
                 }
                 if(cell.mine) {
                     c.fillStyle = 'red'
-                    c.fillRect(i * SCALE, j * SCALE, SCALE - 2, SCALE - 2)
+                    // c.fillRect(i * SCALE, j * SCALE, SCALE - 2, SCALE - 2)
+                    draw_text(c,"🥀",i,j)
                     continue;
                 }
                 //if revealed and not a bomb, write number of adjacent cells that have a mine
                 let count = count_adjacent_bombs(data,i,j)
                 c.fillStyle = 'black'
-                c.fillText(count+"",i*SCALE+10,j*SCALE+15)
+                draw_text(c,count+"",i,j)
             }
         }
     }
@@ -221,7 +252,11 @@
 
     on($("#game"),'click',(e)=>{
         let rect = e.target.getBoundingClientRect()
+        let scw = rect.width/$("#game").width
+        let sch = rect.height/$("#game").height
         let pt = {x:e.clientX - rect.x, y:e.clientY-rect.y}
+        pt.x = pt.x/scw
+        pt.y = pt.y/sch
         pt.x = Math.floor(pt.x/SCALE)
         pt.y = Math.floor(pt.y/SCALE)
 
