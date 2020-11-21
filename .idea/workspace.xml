@@ -19,9 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="86ea3909-9dc0-43a1-8664-fb061f40830e" name="Default Changelist" comment="fix layout">
-      <change beforePath="$PROJECT_DIR$/v1.html" beforeDir="false" afterPath="$PROJECT_DIR$/v1.html" afterDir="false" />
-    </list>
+    <list default="true" id="86ea3909-9dc0-43a1-8664-fb061f40830e" name="Default Changelist" comment="fixed marking and revealing for touch" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -70,7 +68,7 @@
       <updated>1605912964300</updated>
       <workItem from="1605912965376" duration="616000" />
       <workItem from="1605916707507" duration="512000" />
-      <workItem from="1605918908656" duration="4409000" />
+      <workItem from="1605918908656" duration="5279000" />
     </task>
     <task id="LOCAL-00001" summary="update">
       <created>1605919609638</created>
@@ -100,7 +98,14 @@
       <option name="project" value="LOCAL" />
       <updated>1605923079767</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="fixed marking and revealing for touch">
+      <created>1605923558898</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1605923558898</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -122,13 +127,14 @@
     <MESSAGE value="update" />
     <MESSAGE value="made the game work" />
     <MESSAGE value="fix layout" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix layout" />
+    <MESSAGE value="fixed marking and revealing for touch" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed marking and revealing for touch" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="304" y="469" key="Vcs.Push.Dialog.v2" timestamp="1605919612133">
+    <state x="304" y="469" key="Vcs.Push.Dialog.v2" timestamp="1605986888874">
       <screen x="85" y="25" width="2475" height="1415" />
     </state>
-    <state x="304" y="469" key="Vcs.Push.Dialog.v2/85.25.2475.1415@85.25.2475.1415" timestamp="1605919612133" />
+    <state x="304" y="469" key="Vcs.Push.Dialog.v2/85.25.2475.1415@85.25.2475.1415" timestamp="1605986888874" />
     <state x="1606" y="349" width="670" height="676" key="search.everywhere.popup" timestamp="1605916819952">
       <screen x="85" y="25" width="2475" height="1415" />
     </state>
