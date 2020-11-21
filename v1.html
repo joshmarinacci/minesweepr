@@ -3,9 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style type="text/css">
+        #lost, #win {
+            visibility: hidden;
+        }
+    </style>
 </head>
 <body>
 
+<h1 id="lost">You Lost!</h1>
+<h1 id="win">You Won!</h1>
+<button id="restart">restart</button>
 <canvas id="game" width="400" height="400"></canvas>
 
 <script>
@@ -13,39 +21,112 @@
     const $$ = (s) => document.querySelectorAll(s)
     const on = (el,type,cb) => el.addEventListener(type,cb)
 
+    const dummy = {
+        hidden:false,
+        mine:false,
+        number:-1,
+        marked:false,
+    }
     class Grid {
         constructor(w,h) {
             this.w = w
             this.h = h
+            this.init_data()
+        }
+        get(x,y) {
+            if(x<0) return dummy
+            if(y<0) return dummy
+            if(x>= this.w) return dummy
+            if(y>= this.h) return dummy
+            return this.data[x][y]
+        }
+        valid(x,y) {
+            if(x<0) return false
+            if(y<0) return false
+            if(x>= this.w) return false
+            if(y>= this.h) return false
+            return true
+        }
+        reveal(i,j,depth) {
+            if(!depth) depth = 1
+            if(depth > 50) return console.error("too deep")
+            if(!this.valid(i,j)) return
+
+            if(this.get(i,j).hidden === false) {
+                return
+            }
+            this.get(i, j).hidden = false
+            let count = this.count_adjacent(i,j)
+            if(count === 0) {
+                for(let x=-1;x<=1;x++) {
+                    for(let y=-1;y<=1;y++) {
+                        // if (this.get(i + x, j + y).mine) count++
+                        if(x==0&&y==0) continue
+                        this.reveal(i+x,j+y,depth+1)
+                    }
+                }
+            }
+        }
+        mark(x,y) {
+            if(!this.valid(x,y)) return
+            this.data[x][y].marked = !this.data[x][y].marked
+        }
+
+        count_adjacent(i,j) {
+            let count = 0
+            for(let x=-1;x<=1;x++) {
+                for(let y=-1;y<=1;y++) {
+                    if (this.get(i + x, j + y).mine) count++
+                }
+            }
+            return count
+        }
+
+        init_data() {
             this.data = new Array(10)
             for(let i=0; i<this.data.length; i++) {
                 this.data[i] = new Array(10)
                 for(let j=0; j<this.data[i].length; j++) {
                     this.data[i][j] = {
                         hidden:true,
-                        mine:(Math.random()>0.9),
+                        mine:(Math.random()>0.95),
                         number:-1,
                         marked:false,
                     }
                 }
             }
         }
-        get(x,y) {
-            return this.data[x][y]
+        reset() {
+            this.init_data()
         }
-        reveal(x,y) {
-            this.data[x][y].hidden = false
-        }
-        mark(x,y) {
-            this.data[x][y].marked = !this.data[x][y].marked
+
+        is_win() {
+            //every cell must be either revealed or marked
+            let won = true
+            for(let i=0; i<this.w; i++) {
+                for(let j=0; j<this.h; j++) {
+                    let cell = this.get(i,j)
+                    if(cell.hidden === false) continue
+                    if(cell.marked === true) continue
+                    won = false
+                    break;
+                }
+            }
+            return won
         }
     }
-    let data = new Grid(10,10)
+    let data = new Grid(4,4)
 
     const SCALE = 30
 
     function count_adjacent_bombs(data, i, j) {
-        return 2
+        let count = 0
+        for(let x=-1;x<=1;x++) {
+            for(let y=-1;y<=1;y++) {
+                if (data.get(i + x, j + y).mine) count++
+            }
+        }
+        return count
     }
 
     function drawBoard(data, canvas) {
@@ -55,14 +136,18 @@
         for(let i=0; i<data.w; i++) {
             for(let j=0; j<data.h; j++) {
                 let cell = data.get(i,j)
+                c.fillStyle = 'white'
+                c.fillRect(i * SCALE, j * SCALE, SCALE - 2, SCALE - 2)
                 if(cell.marked) {
                     c.fillStyle = 'green'
                     c.fillRect(i * SCALE, j * SCALE, SCALE - 2, SCALE - 2)
                     continue;
                 }
                 if(cell.hidden) {
-                    c.fillStyle = 'black'
+                    c.fillStyle = 'cyan'
                     c.fillRect(i * SCALE, j * SCALE, SCALE - 2, SCALE - 2)
+                    c.strokeStyle = 'black'
+                    c.strokeRect(i * SCALE, j * SCALE, SCALE - 2, SCALE - 2)
                     continue;
                 }
                 if(cell.mine) {
@@ -72,8 +157,6 @@
                 }
                 //if revealed and not a bomb, write number of adjacent cells that have a mine
                 let count = count_adjacent_bombs(data,i,j)
-                c.fillStyle = 'white'
-                c.fillRect(i * SCALE, j * SCALE, SCALE - 2, SCALE - 2)
                 c.fillStyle = 'black'
                 c.fillText(count+"",i*SCALE+10,j*SCALE+15)
             }
@@ -92,10 +175,23 @@
         pt.y = Math.floor(pt.y/SCALE)
 
         if(e.shiftKey) {
-            data.reveal(pt.x, pt.y)
-        } else {
             data.mark(pt.x,pt.y)
+        } else {
+            data.reveal(pt.x, pt.y)
+            if(data.get(pt.x,pt.y).mine) {
+                $("#lost").style.visibility = 'visible'
+            }
         }
+        if(data.is_win()) {
+            $("#win").style.visibility = 'visible'
+        }
+        redraw()
+    })
+
+    on($("#restart"),'click',()=>{
+        $("#lost").style.visibility = 'hidden'
+        $("#win").style.visibility = 'hidden'
+        data.reset()
         redraw()
     })
 

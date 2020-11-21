@@ -19,9 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="86ea3909-9dc0-43a1-8664-fb061f40830e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="86ea3909-9dc0-43a1-8664-fb061f40830e" name="Default Changelist" comment="update">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/v1.html" beforeDir="false" afterPath="$PROJECT_DIR$/v1.html" afterDir="false" />
     </list>
@@ -73,8 +71,16 @@
       <updated>1605912964300</updated>
       <workItem from="1605912965376" duration="616000" />
       <workItem from="1605916707507" duration="512000" />
-      <workItem from="1605918908656" duration="654000" />
+      <workItem from="1605918908656" duration="3491000" />
     </task>
+    <task id="LOCAL-00001" summary="update">
+      <created>1605919609638</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1605919609638</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -92,7 +98,15 @@
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="update" />
+    <option name="LAST_COMMIT_MESSAGE" value="update" />
+  </component>
   <component name="WindowStateProjectService">
+    <state x="304" y="469" key="Vcs.Push.Dialog.v2" timestamp="1605919612133">
+      <screen x="85" y="25" width="2475" height="1415" />
+    </state>
+    <state x="304" y="469" key="Vcs.Push.Dialog.v2/85.25.2475.1415@85.25.2475.1415" timestamp="1605919612133" />
     <state x="1606" y="349" width="670" height="676" key="search.everywhere.popup" timestamp="1605916819952">
       <screen x="85" y="25" width="2475" height="1415" />
     </state>
