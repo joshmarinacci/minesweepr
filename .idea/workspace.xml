@@ -19,7 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="86ea3909-9dc0-43a1-8664-fb061f40830e" name="Default Changelist" comment="update">
+    <list default="true" id="86ea3909-9dc0-43a1-8664-fb061f40830e" name="Default Changelist" comment="made the game work">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/v1.html" beforeDir="false" afterPath="$PROJECT_DIR$/v1.html" afterDir="false" />
     </list>
@@ -71,7 +71,7 @@
       <updated>1605912964300</updated>
       <workItem from="1605912965376" duration="616000" />
       <workItem from="1605916707507" duration="512000" />
-      <workItem from="1605918908656" duration="3491000" />
+      <workItem from="1605918908656" duration="4105000" />
     </task>
     <task id="LOCAL-00001" summary="update">
       <created>1605919609638</created>
@@ -80,7 +80,21 @@
       <option name="project" value="LOCAL" />
       <updated>1605919609638</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="made the game work">
+      <created>1605922499971</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1605922499971</updated>
+    </task>
+    <task id="LOCAL-00003" summary="made the game work">
+      <created>1605922546544</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1605922546544</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -100,7 +114,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="update" />
-    <option name="LAST_COMMIT_MESSAGE" value="update" />
+    <MESSAGE value="made the game work" />
+    <option name="LAST_COMMIT_MESSAGE" value="made the game work" />
   </component>
   <component name="WindowStateProjectService">
     <state x="304" y="469" key="Vcs.Push.Dialog.v2" timestamp="1605919612133">

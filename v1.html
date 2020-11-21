@@ -4,17 +4,49 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <style type="text/css">
+        body {
+            min-height: 100vh;
+            border: 0px solid red;
+            margin:0;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+        }
         #lost, #win {
             visibility: hidden;
+            position: fixed;
+            top: 0;
+            left:0;
+            right:0;
+            bottom:0;
+            /*padding: 7em;*/
+            border: 1px solid red;
+            background-color: rgba(255,255,255,0.8);
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        #lost p {
+
+        }
+        #game {
+            border: 5px solid red;
         }
     </style>
 </head>
 <body>
 
-<h1 id="lost">You Lost!</h1>
-<h1 id="win">You Won!</h1>
-<button id="restart">restart</button>
-<canvas id="game" width="400" height="400"></canvas>
+<h1 id="lost"><p>You Lost!</p></h1>
+<h1 id="win"><p>You Won!</p></h1>
+
+    <button id="restart">restart</button>
+    <canvas id="game" width="400" height="400"></canvas>
+
 
 <script>
     const $ = (s) => document.querySelector(s)
@@ -131,6 +163,11 @@
 
     function drawBoard(data, canvas) {
         let c = canvas.getContext('2d')
+        if(canvas.width !== data.w*SCALE || canvas.height !== data.h*SCALE) {
+            console.log("wrong size")
+            canvas.width = data.w*SCALE
+            canvas.height = data.h*SCALE
+        }
         c.fillStyle = 'white'
         c.fillRect(0,0,data.w*SCALE,data.h*SCALE)
         for(let i=0; i<data.w; i++) {
@@ -188,13 +225,16 @@
         redraw()
     })
 
-    on($("#restart"),'click',()=>{
+    const restart = () => {
+        console.log("clicking")
         $("#lost").style.visibility = 'hidden'
         $("#win").style.visibility = 'hidden'
         data.reset()
         redraw()
-    })
-
+    }
+    on($("#restart"),'click',restart)
+    on($("#lost"),'click',restart)
+    on($("#win"),'click',restart)
 
     redraw()
 </script>
