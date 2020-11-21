@@ -37,6 +37,13 @@
         #game {
             border: 5px solid red;
         }
+        button {
+            font-size: 30pt;
+            background-color: gray;
+        }
+        button.selected {
+            background-color: aqua;
+        }
     </style>
 </head>
 <body>
@@ -45,6 +52,10 @@
 <h1 id="win"><p>You Won!</p></h1>
 
     <button id="restart">restart</button>
+    <div class="group">
+        <button id="mark" class="selected">mark</button>
+        <button id="mine">reveal</button>
+    </div>
     <canvas id="game" width="400" height="400"></canvas>
 
 
@@ -88,6 +99,7 @@
                 return
             }
             this.get(i, j).hidden = false
+            this.get(i, j).marked = false
             let count = this.count_adjacent(i,j)
             if(count === 0) {
                 for(let x=-1;x<=1;x++) {
@@ -148,6 +160,7 @@
         }
     }
     let data = new Grid(10,10)
+    let control_state = "mark"
 
     const SCALE = 30
 
@@ -211,7 +224,7 @@
         pt.x = Math.floor(pt.x/SCALE)
         pt.y = Math.floor(pt.y/SCALE)
 
-        if(e.shiftKey) {
+        if(control_state === 'mark') {
             data.mark(pt.x,pt.y)
         } else {
             data.reveal(pt.x, pt.y)
@@ -232,9 +245,22 @@
         data.reset()
         redraw()
     }
+    const toggle_buttons = (e) => {
+        if(e.target.id === 'mine') {
+            $("#mine").classList.add("selected")
+            $("#mark").classList.remove("selected")
+            control_state = 'mine'
+        } else {
+            $("#mark").classList.add("selected")
+            $("#mine").classList.remove("selected")
+            control_state = 'mark'
+        }
+    }
     on($("#restart"),'click',restart)
     on($("#lost"),'click',restart)
     on($("#win"),'click',restart)
+    on($("#mark"),'click',toggle_buttons)
+    on($("#mine"),'click',toggle_buttons)
 
     redraw()
 </script>

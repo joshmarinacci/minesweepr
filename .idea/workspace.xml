@@ -19,8 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="86ea3909-9dc0-43a1-8664-fb061f40830e" name="Default Changelist" comment="made the game work">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="86ea3909-9dc0-43a1-8664-fb061f40830e" name="Default Changelist" comment="fix layout">
       <change beforePath="$PROJECT_DIR$/v1.html" beforeDir="false" afterPath="$PROJECT_DIR$/v1.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -71,7 +70,7 @@
       <updated>1605912964300</updated>
       <workItem from="1605912965376" duration="616000" />
       <workItem from="1605916707507" duration="512000" />
-      <workItem from="1605918908656" duration="4105000" />
+      <workItem from="1605918908656" duration="4409000" />
     </task>
     <task id="LOCAL-00001" summary="update">
       <created>1605919609638</created>
@@ -94,7 +93,14 @@
       <option name="project" value="LOCAL" />
       <updated>1605922546544</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="fix layout">
+      <created>1605923079767</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1605923079767</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -115,7 +121,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="update" />
     <MESSAGE value="made the game work" />
-    <option name="LAST_COMMIT_MESSAGE" value="made the game work" />
+    <MESSAGE value="fix layout" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix layout" />
   </component>
   <component name="WindowStateProjectService">
     <state x="304" y="469" key="Vcs.Push.Dialog.v2" timestamp="1605919612133">
